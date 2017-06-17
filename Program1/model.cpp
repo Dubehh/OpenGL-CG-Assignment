@@ -106,13 +106,6 @@ void Model::draw(const mat4 &view, const mat4 &projection, GLuint programID) {
 	else {
 		uniform_mv = glGetUniformLocation(programID, "mv");
 
-		GLuint uniform_projection = glGetUniformLocation(programID, "projection");
-		GLuint uniform_light_pos = glGetUniformLocation(programID, "lightPos");
-		GLuint uniform_material_ambient = glGetUniformLocation(programID, "matAmbient");
-		GLuint uniform_material_diffuse = glGetUniformLocation(programID, "matDiffuse");
-		GLuint uniform_material_specular = glGetUniformLocation(programID, "matSpecular");
-		GLuint uniform_material_power = glGetUniformLocation(programID, "matPower");
-
 		glUniformMatrix4fv(glGetUniformLocation(programID, "projection"), 1, GL_FALSE, value_ptr(projection));
 		glUniform3fv(glGetUniformLocation(programID, "lightPos"), 1, glm::value_ptr(vec3(50, 50, 50)));
 		glUniform3fv(glGetUniformLocation(programID, "matAmbient"), 1, value_ptr(mat.ambient));
