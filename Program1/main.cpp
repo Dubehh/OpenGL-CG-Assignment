@@ -34,12 +34,6 @@ void render(int) {
 	glutTimerFunc(10, render, 0);
 }
 
-void loadShader() {
-	GLuint fshID = glsl::makeFragmentShader(glsl::readFile("fragmentshader.fsh"));
-	GLuint vshID = glsl::makeVertexShader(glsl::readFile("vertexshader.vsh"));
-	programID = glsl::makeShaderProgram(vshID, fshID);
-}
-
 void onKeyEvent(unsigned char key, int x, int y) {
 	camera->onKeyEvent(key);
 }
@@ -48,23 +42,33 @@ void onMouseEvent(int x, int y) {
 	camera->onMouseEvent(x, y);
 }
 
-
-int main(int argc, char ** argv) {
+void initCore(int argc, char ** argv) {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(width, height);
 	glutCreateWindow("Final Assignment");
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS);
 	glutDisplayFunc(render);
 	glewInit();
+}
 
-	projection = glm::perspective(45.0f, 1.0f * width / height, 0.1f, 200.0f);
-	loadShader();
+void initShader() {
+	GLuint fshID = glsl::makeFragmentShader(glsl::readFile("fragmentshader.fsh"));
+	GLuint vshID = glsl::makeVertexShader(glsl::readFile("vertexshader.vsh"));
+	programID = glsl::makeShaderProgram(vshID, fshID);
+	projection = glm::perspective(45.0f, 1.0f * width / height, 0.1f, 500.0f);
+}
 
+void initWorld() {
 	world->createWorld();
 	world->load(programID, projection);
+}
 
+
+int main(int argc, char ** argv) {
+	initCore(argc, argv);
+	initShader();
+	initWorld();
+	
 	glutKeyboardFunc(onKeyEvent);
 	glutPassiveMotionFunc(onMouseEvent);
 

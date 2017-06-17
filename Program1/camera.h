@@ -20,6 +20,7 @@ private:
 	vec3 position;
 	int width, height, x, y;
 	void onFirstPersonControlling(unsigned char key);
+	void perspectiveChangedEvent();
 public:
 	void togglePerspective();
 	bool isFirstPerson();

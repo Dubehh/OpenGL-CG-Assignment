@@ -22,6 +22,7 @@ void Camera::onFirstPersonControlling(unsigned char key) {
 
 void Camera::togglePerspective() {
 	this->firstPersonPerspective = !firstPersonPerspective;
+	perspectiveChangedEvent();
 }
 
 bool Camera::isFirstPerson() {
@@ -29,13 +30,16 @@ bool Camera::isFirstPerson() {
 }
 
 glm::mat4 Camera::getView() {
-
 	vec3 up = cross(getRight(), targetDirection());
 	return lookAt(
 		this->position,
 		this->position + getDirection(),
 		up
 	);
+}
+
+void Camera::perspectiveChangedEvent() {
+	glutSetCursor(this->firstPersonPerspective ? GLUT_CURSOR_NONE : GLUT_CURSOR_INHERIT);
 }
 
 vec3 Camera::getDirection() {
@@ -81,6 +85,6 @@ void Camera::onKeyEvent(unsigned char key) {
 
 
 Camera::Camera(int width, int height) : width(width), height(height) {
-	this->position = vec3(0, 5, 0);
+	this->position = vec3(0, 0, 3);
 }
 

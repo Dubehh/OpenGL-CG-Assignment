@@ -19,8 +19,7 @@ void WorldLoader::load(GLuint id, const mat4& projection) {
 }
 
 void WorldLoader::createWorld() {
-	Model* box = new Model("Models/model.obj", "Textures/tiles.bmp");
-	box->position = vec3(0, -3, 0);
+	Model* box = new Model("Models/plane.obj", "Textures/grass.bmp");
 	box->model = translate(box->model, box->position);
 	enlist(box);
 }
