@@ -30,9 +30,9 @@ void Model::load() {
 		this->isLoaded = true;
 	} else {
 		loadOBJ(this->filePath,
-			this->vertices,
-			this->uvs,
-			this->normals);
+			vertices,
+			uvs,
+			normals);
 		if (this->texturePath != NULL)
 			this->texture = loadBMP(this->texturePath);
 		this->isLoaded = true;
@@ -44,25 +44,28 @@ void Model::loadBuffer(GLuint id, const mat4 &projection) {
 		for (auto &component : this->components)
 			component->loadBuffer(id, projection);
 	else {
+		/* setup vertices */
 		glGenBuffers(1, &vbo_vertices);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo_vertices);
 		glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vec3),
 			&vertices[0], GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
+		/* setup normals */
 		glGenBuffers(1, &vbo_normals);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo_normals);
 		glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(vec3),
 			&normals[0], GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		/* setup uvs */
 		glGenBuffers(1, &vbo_uvs);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo_uvs);
 		glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(vec2),
 			&uvs[0], GL_STATIC_DRAW);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
 		glGenVertexArrays(1, &vao);
 		glBindVertexArray(vao);
-
+		/* Initializing position attribute */
 		GLuint attribute_position = glGetAttribLocation(id, "position");
 		glEnableVertexAttribArray(attribute_position);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo_vertices);
@@ -72,7 +75,7 @@ void Model::loadBuffer(GLuint id, const mat4 &projection) {
 			GL_FLOAT, GL_FALSE,
 			0, 0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
+		/* Initializing normal attribute*/
 		GLuint attribute_normals = glGetAttribLocation(id, "normal");
 		glEnableVertexAttribArray(attribute_normals);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo_normals);
@@ -82,7 +85,7 @@ void Model::loadBuffer(GLuint id, const mat4 &projection) {
 			GL_FLOAT, GL_FALSE,
 			0, 0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-
+		/* Initializing uvs attribute */
 		GLuint attribute_uvs = glGetAttribLocation(id, "vertexUV");
 		glEnableVertexAttribArray(attribute_uvs);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo_uvs);
@@ -102,6 +105,14 @@ void Model::draw(const mat4 &view, const mat4 &projection, GLuint programID) {
 			component->draw(view, projection, programID);
 	else {
 		uniform_mv = glGetUniformLocation(programID, "mv");
+
+		GLuint uniform_projection = glGetUniformLocation(programID, "projection");
+		GLuint uniform_light_pos = glGetUniformLocation(programID, "lightPos");
+		GLuint uniform_material_ambient = glGetUniformLocation(programID, "matAmbient");
+		GLuint uniform_material_diffuse = glGetUniformLocation(programID, "matDiffuse");
+		GLuint uniform_material_specular = glGetUniformLocation(programID, "matSpecular");
+		GLuint uniform_material_power = glGetUniformLocation(programID, "matPower");
+
 		glUniformMatrix4fv(glGetUniformLocation(programID, "projection"), 1, GL_FALSE, value_ptr(projection));
 		glUniform3fv(glGetUniformLocation(programID, "lightPos"), 1, glm::value_ptr(vec3(50, 50, 50)));
 		glUniform3fv(glGetUniformLocation(programID, "matAmbient"), 1, value_ptr(mat.ambient));

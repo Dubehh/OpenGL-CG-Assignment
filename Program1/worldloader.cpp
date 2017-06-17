@@ -19,9 +19,9 @@ void WorldLoader::load(GLuint id, const mat4& projection) {
 }
 
 void WorldLoader::createWorld() {
-	Model* box = new Model("Models/plane.obj", "Textures/grass.bmp");
-	box->model = translate(box->model, box->position);
-	enlist(box);
+	Model* car = new Model("Models/car.obj", "Textures/car.bmp");
+	car->model = translate(car->model, car->position);
+	enlist(car);
 }
 
 void WorldLoader::draw(const mat4 &view, const mat4&projection, GLuint id) {
