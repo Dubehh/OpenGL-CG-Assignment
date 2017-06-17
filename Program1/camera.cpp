@@ -81,6 +81,6 @@ void Camera::onKeyEvent(unsigned char key) {
 
 
 Camera::Camera(int width, int height) : width(width), height(height) {
-	this->position = vec3(0, 5, 0);
+	this->position = vec3(7, 1.5, 1.2);
 }
 
