@@ -1,0 +1,26 @@
+﻿Build started 17-6-2017 23:33:51.
+     1>Project "C:\Users\Eelco\Documents\c++\Assignment\Program1\Program1.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I"C:\Libraries\glew-2.0.0-win32\glew-2.0.0\include" /I"C:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\include" /I"C:\Libraries\glm-0.9.6.3\glm" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt camera.cpp glsl.cpp objectloader.cpp texture.cpp worldloader.cpp
+         worldloader.cpp
+     1>c:\users\eelco\documents\c++\assignment\program1\worldloader.cpp(25): warning C4316: 'Model': object allocated on the heap may not be aligned 16
+         camera.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         texture.cpp
+         objectloader.cpp
+         glsl.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Eelco\Documents\c++\Assignment\Debug\Program1.exe" /INCREMENTAL /NOLOGO /LIBPATH:"c:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\lib" /LIBPATH:"c:\Libraries\glew-2.0.0-win32\glew-2.0.0\lib\Release\Win32" freeglut.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST:NO /ALLOWISOLATION:NO /Debug /PDB:"C:\Users\Eelco\Documents\c++\Assignment\Debug\Program1.pdb" /SUBSYSTEM:CONSOLE /IGNOREIDL /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Eelco\Documents\c++\Assignment\Debug\Program1.lib" /MACHINE:X86 Debug\camera.obj
+         Debug\glsl.obj
+         Debug\main.obj
+         Debug\model.obj
+         Debug\objectloader.obj
+         Debug\texture.obj
+         Debug\worldloader.obj
+         Program1.vcxproj -> C:\Users\Eelco\Documents\c++\Assignment\Debug\Program1.exe
+     1>Done Building Project "C:\Users\Eelco\Documents\c++\Assignment\Program1\Program1.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.58

@@ -5,7 +5,7 @@
 *.slo
 *.lo
 *.o
-*.obj
+Program1/Debug/
 
 # Precompiled Headers
 *.gch
@@ -30,3 +30,4 @@
 *.exe
 *.out
 *.app
+Program1.opensdf

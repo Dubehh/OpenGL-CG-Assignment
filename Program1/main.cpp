@@ -40,12 +40,6 @@ void render(int n) {
 	glutTimerFunc(10, render, 0);
 }
 
-//void loadShader() {
-//	GLuint fshID = glsl::makeFragmentShader(glsl::readFile("fragmentshader.fsh"));
-//	GLuint vshID = glsl::makeVertexShader(glsl::readFile("vertexshader.vsh"));
-//	programID = glsl::makeShaderProgram(vshID, fshID);
-//}
-
 void onKeyEvent(unsigned char key, int x, int y) {
 	camera->onKeyEvent(key);
 }
@@ -54,34 +48,16 @@ void onMouseEvent(int x, int y) {
 	camera->onMouseEvent(x, y);
 }
 
-
-//------------------------------------------------------------
-// void InitGlutGlew(int argc, char **argv)
-// Initializes Glut and Glew
-//------------------------------------------------------------
-
-void InitGlutGlew(int argc, char **argv)
-{
+void initCore(int argc, char **argv) {
 	glutInit(&argc, argv);
-
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
-
 	glutInitWindowSize(width, height);
-	glutCreateWindow("Hello OpenGL");
-
+	glutCreateWindow("Computer Graphics - Final Assignment");
 	glutDisplayFunc(render);
-
 	glewInit();
 }
 
-
-//------------------------------------------------------------
-// void InitShaders()
-// Initialized the fragmentshader and vertexshader
-//------------------------------------------------------------
-
-void InitShaders()
-{
+void initShader() {
 	char * fragshader = glsl::readFile(FSH);
 	GLuint fshID = glsl::makeFragmentShader(fragshader);
 
@@ -91,76 +67,32 @@ void InitShaders()
 	programID = glsl::makeShaderProgram(vshID, fshID);
 }
 
-
-//------------------------------------------------------------
-// void InitMatrices()
-//------------------------------------------------------------
-
-
-void InitMatrices()
-{
+void initMatrices() {
 	projection = glm::perspective(45.0f,
 		1.0f * width / height, 0.1f,
 		200.0f);
 }
 
-//------------------------------------------------------------
-// void InitBuffers()
-// Allocates and fills buffers
-//------------------------------------------------------------
-
-void InitBuffers()
-{
-	//Loop through all the objects in our vector and init the buffers
-	world->initBuffers(programID, projection);
-
+void initWorld() {
+	world->createWorld();
+	world->load(programID, projection);
 }
 
-
 int main(int argc, char ** argv) {
-
-	InitGlutGlew(argc, argv);
-	InitShaders();
-	InitMatrices();
-	world->createWorld();
-	InitBuffers();
+	initCore(argc, argv);
+	initShader();
+	initMatrices();
+	initWorld();
 	glUseProgram(programID);
 
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
-	HWND hWnd = GetConsoleWindow();
-
-	//leave this for debug purposes
-	//ShowWindow(hWnd, SW_HIDE);
-
+	
 	glutKeyboardFunc(onKeyEvent);
 	glutPassiveMotionFunc(onMouseEvent);
 	glutTimerFunc(10, render, 0);
 	glutMainLoop();
 
-
-
-/*
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowSize(width, height);
-	glutCreateWindow("Final Assignment");
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS);
-	glutDisplayFunc(render);
-	glewInit();
-
-	projection = glm::perspective(45.0f, 1.0f * width / height, 0.1f, 200.0f);
-	loadShader();
-
-	world->createWorld();
-	world->load(programID, projection);
-
-	glutKeyboardFunc(onKeyEvent);
-	glutPassiveMotionFunc(onMouseEvent);
-
-	glutTimerFunc(10, render, 0);
-	glutMainLoop();*/
 	return 0;
 }
 

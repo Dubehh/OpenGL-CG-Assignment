@@ -7,33 +7,22 @@ WorldLoader::~WorldLoader() {
 		delete this->models[i];
 }
 
-
-void WorldLoader::initBuffers(GLuint programID, const glm::mat4 &projection){
-	glBindVertexArray(0);
-	glUseProgram(programID);
-	for (auto &obj : models)
-	{
-		obj->load();
-		//Load the buffers for each object
-		obj->loadBuffer(programID, projection);
-	}
-
-	glUseProgram(0);
-}
-
 void WorldLoader::enlist(Model * model) {
 	this->models.push_back(model);
 }
 
 void WorldLoader::load(GLuint id, const mat4& projection) {
-	for (auto &model : this->models) {
+	glBindVertexArray(0);
+	glUseProgram(id);
+	for (auto &model : models) {
 		model->load();
 		model->loadBuffer(id, projection);
 	}
+	glUseProgram(0);
 }
 
 void WorldLoader::createWorld() {
-	Model* box = new Model("Models/door.obj", "Textures/tiles.bmp");
+	Model* box = new Model("Models/car.obj", "Textures/car.bmp");
 	box->position = vec3(0, -3, 0);
 	box->model = translate(box->model, box->position);
 	enlist(box);
