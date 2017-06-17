@@ -60,4 +60,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="fragmentshader.fsh" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="vertexshader.vsh" />
+  </ItemGroup>
 </Project>

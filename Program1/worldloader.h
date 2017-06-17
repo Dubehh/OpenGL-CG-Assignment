@@ -3,11 +3,11 @@
 #pragma once
 class WorldLoader {
 private:
-	vector<Model *> models;
+	std::vector<Model *> models;
 public:
 	~WorldLoader();
 	void enlist(Model*);
-	void load(GLuint, const mat4&);
+	void load(GLuint programID, const glm::mat4 &projection);
 	void createWorld();
 	void draw(const mat4&, const mat4&, GLuint);
 };

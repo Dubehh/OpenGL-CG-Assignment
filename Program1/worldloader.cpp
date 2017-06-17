@@ -12,16 +12,20 @@ void WorldLoader::enlist(Model * model) {
 }
 
 void WorldLoader::load(GLuint id, const mat4& projection) {
-	for (auto &model : this->models) {
+	glBindVertexArray(0);
+	glUseProgram(id);
+	for (auto &model : models) {
 		model->load();
 		model->loadBuffer(id, projection);
 	}
+	glUseProgram(0);
 }
 
 void WorldLoader::createWorld() {
-	Model* car = new Model("Models/car.obj", "Textures/car.bmp");
-	car->model = translate(car->model, car->position);
-	enlist(car);
+	Model* box = new Model("Models/car.obj", "Textures/car.bmp");
+	box->position = vec3(0, -3, 0);
+	box->model = translate(box->model, box->position);
+	enlist(box);
 }
 
 void WorldLoader::draw(const mat4 &view, const mat4&projection, GLuint id) {

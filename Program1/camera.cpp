@@ -9,10 +9,10 @@ void Camera::onFirstPersonControlling(unsigned char key) {
 		position += targetDirection() * momentum * speed;
 		break;
 	case 'a':
-		position -= targetDirection() * momentum * speed;
+		position -= getRight() * momentum * speed;
 		break;
 	case 's':
-		position -= getRight() * momentum * speed;
+		position -= targetDirection() * momentum * speed;
 		break;
 	case 'd':
 		position += getRight() * momentum * speed;
@@ -87,6 +87,6 @@ void Camera::onKeyEvent(unsigned char key) {
 
 
 Camera::Camera(int width, int height) : width(width), height(height) {
-	this->position = vec3(0, 0, 3);
+	this->position = vec3(7, 1.5, 1.2);
 }
 

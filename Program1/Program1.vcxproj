@@ -46,7 +46,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Libraries\glew-2.0.0-win32\glew-2.0.0\lib\Release\Win32;C:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\lib;C:\Libraries\glm-0.9.6.3\glm;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -64,7 +64,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\OWNCLOUD\Share\HI\CG\Lecture 3 CG\Programs\freeglut-MSVC-3.0.0-2.mp\freeglut\lib;D:\OWNCLOUD\Share\HI\CG\Lecture 3 CG\Programs\glew-1.13.0-win32\glew-1.13.0\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>c:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\lib;c:\Libraries\glew-2.0.0-win32\glew-2.0.0\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>freeglut.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AllowIsolation>false</AllowIsolation>
       <IgnoreEmbeddedIDL>true</IgnoreEmbeddedIDL>
@@ -103,6 +103,14 @@
     <ClInclude Include="objectloader.hpp" />
     <ClInclude Include="texture.hpp" />
     <ClInclude Include="worldloader.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="vertexshader.vsh">
+      <FileType>Document</FileType>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fragmentshader.fsh" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
