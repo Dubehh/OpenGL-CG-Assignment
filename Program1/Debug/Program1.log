@@ -1,9 +1,7 @@
-﻿Build started 17-6-2017 23:33:51.
+﻿Build started 17-6-2017 23:39:28.
      1>Project "C:\Users\Eelco\Documents\c++\Assignment\Program1\Program1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I"C:\Libraries\glew-2.0.0-win32\glew-2.0.0\include" /I"C:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\include" /I"C:\Libraries\glm-0.9.6.3\glm" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt camera.cpp glsl.cpp objectloader.cpp texture.cpp worldloader.cpp
-         worldloader.cpp
-     1>c:\users\eelco\documents\c++\assignment\program1\worldloader.cpp(25): warning C4316: 'Model': object allocated on the heap may not be aligned 16
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /I"C:\Libraries\glew-2.0.0-win32\glew-2.0.0\include" /I"C:\Libraries\freeglut-MSVC-3.0.0-2.mp\freeglut\include" /I"C:\Libraries\glm-0.9.6.3\glm" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt camera.cpp glsl.cpp objectloader.cpp texture.cpp
          camera.cpp
          Generating Code...
          Skipping... (no relevant changes detected)
@@ -23,4 +21,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.58
+Time Elapsed 00:00:00.98

@@ -9,10 +9,10 @@ void Camera::onFirstPersonControlling(unsigned char key) {
 		position += targetDirection() * momentum * speed;
 		break;
 	case 'a':
-		position -= targetDirection() * momentum * speed;
+		position -= getRight() * momentum * speed;
 		break;
 	case 's':
-		position -= getRight() * momentum * speed;
+		position -= targetDirection() * momentum * speed;
 		break;
 	case 'd':
 		position += getRight() * momentum * speed;
