@@ -1,34 +1,32 @@
 #include "camera.h"
 #include <iostream>
 
+#define ESCAPE 27
+#define SPACEBAR 32
 
+/* Listener used when the camera is in first person mode */
 void Camera::onFirstPersonControlling(unsigned char key) {
 	float momentum = .15f;
 	switch (key) {
-	case 'w':
-		position += targetDirection() * momentum * speed;
-		break;
-	case 'a':
-		position -= getRight() * momentum * speed;
-		break;
-	case 's':
-		position -= targetDirection() * momentum * speed;
-		break;
-	case 'd':
-		position += getRight() * momentum * speed;
-		break;
+		case 'w': position += targetDirection() * momentum * speed; break;
+		case 'a': position -= getRight() * momentum * speed; break;
+		case 's': position -= targetDirection() * momentum * speed; break;
+		case 'd': position += getRight() * momentum * speed; break;
 	}
 }
 
+/* Toggles the camera perspective */
 void Camera::togglePerspective() {
 	this->firstPersonPerspective = !firstPersonPerspective;
 	perspectiveChangedEvent();
 }
 
+/* Returns whether the camera is currently in firstperson mode */
 bool Camera::isFirstPerson() {
 	return this->firstPersonPerspective;
 }
 
+/* Returns the bounds of the current view perspective */
 glm::mat4 Camera::getView() {
 	vec3 right = getRight();
 	vec3 dir = targetDirection();
@@ -40,10 +38,20 @@ glm::mat4 Camera::getView() {
 	);
 }
 
+/* Handler that fires when the camera changes perspective */
 void Camera::perspectiveChangedEvent() {
 	glutSetCursor(this->firstPersonPerspective ? GLUT_CURSOR_NONE : GLUT_CURSOR_INHERIT);
+	this->position = this->firstPersonPerspective ? vec3(7, 1.5, 12) : vec3(8, 15, -8);
+	if (!this->firstPersonPerspective) {
+		horizontalOffset = 3.14f * -0.2f;
+		verticalOffset = 3.14f * -0.2f;
+	} else {
+		horizontalOffset = 3.14f;
+		verticalOffset = 0.0f;
+	}
 }
 
+/* Returns the direction the camera is looking at */
 vec3 Camera::getDirection() {
 	return glm::vec3(
 		cos(this->verticalOffset) * sin(this->horizontalOffset),
@@ -87,6 +95,8 @@ void Camera::onKeyEvent(unsigned char key) {
 
 
 Camera::Camera(int width, int height) : width(width), height(height) {
-	this->position = vec3(7, 1.5, 1.2);
+	this->position = vec3(8, 15, -8);
+	horizontalOffset = 3.14f * -0.2f;
+	verticalOffset = 3.14f * -0.2f;
 }
 

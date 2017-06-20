@@ -16,9 +16,6 @@ using namespace std;
 GLuint programID;
 mat4 projection;
 
-const char * FSH = "fragmentshader.fsh";
-const char * VSH = "vertexshader.vsh";
-
 const int width = 1200,
 		  height = 900;
 
@@ -58,16 +55,12 @@ void initCore(int argc, char **argv) {
 }
 
 void initShader() {
-	char * fragshader = glsl::readFile(FSH);
-	GLuint fshID = glsl::makeFragmentShader(fragshader);
-
-	char * vertexshader = glsl::readFile(VSH);
-	GLuint vshID = glsl::makeVertexShader(vertexshader);
-
-	programID = glsl::makeShaderProgram(vshID, fshID);
+	GLuint fragmentID = glsl::makeFragmentShader(glsl::readFile("fragmentshader.fsh"));
+	GLuint vertextID = glsl::makeVertexShader(glsl::readFile("vertexshader.vsh"));
+	programID = glsl::makeShaderProgram(vertextID, fragmentID);
 }
 
-void initMatrices() {
+void initProjection() {
 	projection = glm::perspective(45.0f,
 		1.0f * width / height, 0.1f,
 		200.0f);
@@ -81,7 +74,7 @@ void initWorld() {
 int main(int argc, char ** argv) {
 	initCore(argc, argv);
 	initShader();
-	initMatrices();
+	initProjection();
 	initWorld();
 	glUseProgram(programID);
 
